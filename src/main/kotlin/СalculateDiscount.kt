@@ -1,6 +1,6 @@
 fun main() {
     var discount = 0.0
-    val isRegularCustomer = false
+    val isRegularCustomer = true
     val purchaseAmount = 1200.0
 
     when {
