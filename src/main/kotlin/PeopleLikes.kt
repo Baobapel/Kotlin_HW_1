@@ -1,3 +1,4 @@
+
 fun main() {
     val likes = 21
     val lastDigit = likes % 10
