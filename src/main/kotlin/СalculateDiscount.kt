@@ -1,36 +1,37 @@
 fun main() {
     var discount = 0.0
+    var onepercent = 0.01
+    var fivepercent = 0.05
     val isRegularCustomer = true
-    val purchaseAmount = 1200.0
+    val purchaseAmount = 10200.0
 
-    when {
+    val simpleDiscount = purchaseAmount - when {
         purchaseAmount in 1000.0..10000.0 -> {
-            discount = 100.0
+            discount += 100.0
+            100.0
         }
-    }
 
-    val simpleDiscount = purchaseAmount - discount
-
-    when {
         purchaseAmount >= 10001.0 -> {
-            discount = purchaseAmount * 0.05
+            discount += (purchaseAmount * fivepercent)
+            (purchaseAmount * fivepercent)
         }
+
+        else -> {
+            purchaseAmount
+        }
+
     }
 
-    val discountedAmount = purchaseAmount - discount
-
-    if (isRegularCustomer) {
-        val regularCustomerDiscount = discountedAmount * 0.01 // Применяем 1% скидку сверху
-        discount += regularCustomerDiscount
-    }
-    val amountAfterDiscount = purchaseAmount - discount
+    val amountAfterDiscount = purchaseAmount - discount * onepercent
 
     println("Покупка - $purchaseAmount рублей")
-    if (discount == 0.00) println("Скидок нет!")
-    if (purchaseAmount >= 1000.0 && purchaseAmount <= 10000.0) println("Скидка составила 100 рублей. Сумма составила $simpleDiscount")
-    if (purchaseAmount >= 10001.0) println("После применения 5% скидки — $discountedAmount рублей.")
-    if (isRegularCustomer) println("Вы постоянный клиент. После применения 1% скидки — $amountAfterDiscount рублей.")
 
+    when {
+        discount == 0.00 -> println("Скидок нет!")
+        purchaseAmount in 1000.0 ..10000.0 -> println("Скидка составила 100 рублей. Сумма составила $simpleDiscount")
+        purchaseAmount >= 10001.0 -> println("После применения 5% скидки — скидка составила $discount рублей.")
+        isRegularCustomer -> println("Вы постоянный клиент. После применения 1% скидки — $amountAfterDiscount рублей.")
+    }
 }
 
 
